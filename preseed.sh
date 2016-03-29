@@ -6,9 +6,9 @@ umount loopdir
 
 mkdir irmod
 cd irmod
-gzip -d < ../cdir/install.386/2.6/initrd.gz | cpio --extract --verbose --make-directories --no-absolute-filenames
+gzip -d < ../cdir/install.386/initrd.gz | cpio --extract --verbose --make-directories --no-absolute-filenames
 cp ../preseed.cfg preseed.cfg
-find . | cpio -H newc --create --verbose | gzip -9 > ../cdir/install/2.6/initrd.gz
+find . | cpio -H newc --create --verbose | gzip -9 > ../cdir/install.386/initrd.gz
 cd ../
 rm -fr irmod/
 

@@ -1,15 +1,20 @@
+# Required packages: syslinux-utils
 mkdir loopdir
-mount -o loop deb*.iso loopdir
-mkdir cdir
-rsync -a -H --exclude=TRANS.TBL loopdir/ cdir
-umount loopdir
+sudo mount -o loop deb-8*.iso loopdir
+mkdir isofiles
+rsync -a -H --exclude=TRANS.TBL loopdir/ isofiles/
+sudo umount loopdir
+chmod u+w isofiles
 
-mkdir irmod
-cd irmod
-gzip -d < ../cdir/install.386/initrd.gz | cpio --extract --verbose --make-directories --no-absolute-filenames
+mkdir workspace
+cd workspace
+gzip -d < ../isofiles/install.386/initrd.gz | cpio --extract --verbose --make-directories --no-absolute-filenames
 cp ../preseed.cfg preseed.cfg
-find . | cpio -H newc --create --verbose | gzip -9 > ../cdir/install.386/initrd.gz
+chmod u+w ../isofiles/install.386/initrd.gz
+find . | sudo cpio -H newc --create --verbose | sudo gzip -9 > ../isofiles/install.386/initrd.gz
 cd ../
-rm -fr irmod/
+rm -fr workspace
 
-genisoimage -o debian_patched.iso -r -J -no-emul-boot -boot-load-size 4 -boot-info-table -b isolinux/isolinux.bin -c isolinux/boot.cat ./cdir
+sudo genisoimage -o debian_patched.iso -r -J -no-emul-boot -boot-load-size 4 -boot-info-table -b isolinux/isolinux.bin -c isolinux/boot.cat ./cdir
+
+sudo isohybrid debian_patched.iso

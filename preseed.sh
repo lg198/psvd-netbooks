@@ -1,8 +1,6 @@
 # Required packages: syslinux-utils
-rm -rf loopdir
 mkdir loopdir
 sudo mount -o loop debian-8*.iso loopdir
-rm -rf isofiles
 mkdir isofiles
 rsync -a -H --exclude=TRANS.TBL loopdir/ isofiles/
 sudo umount loopdir
@@ -15,8 +13,11 @@ cp ../preseed.cfg preseed.cfg
 chmod u+w ../isofiles/install.386/initrd.gz
 find . | sudo cpio -H newc --create --verbose | sudo gzip -9 > ../isofiles/install.386/initrd.gz
 cd ../
-rm -fr workspace
 
 sudo genisoimage -o debian_patched.iso -r -J -no-emul-boot -boot-load-size 4 -boot-info-table -b isolinux/isolinux.bin -c isolinux/boot.cat ./isofiles
 
 sudo isohybrid debian_patched.iso
+
+rm -rf loopdir
+rm -rf workspace
+rm -rf isofiles

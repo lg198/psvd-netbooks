@@ -1,6 +1,8 @@
 # Required packages: syslinux-utils
+rm -rf loopdir
 mkdir loopdir
 sudo mount -o loop debian-8*.iso loopdir
+rm -rf isofiles
 mkdir isofiles
 rsync -a -H --exclude=TRANS.TBL loopdir/ isofiles/
 sudo umount loopdir

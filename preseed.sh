@@ -15,6 +15,6 @@ find . | sudo cpio -H newc --create --verbose | sudo gzip -9 > ../isofiles/insta
 cd ../
 rm -fr workspace
 
-sudo genisoimage -o debian_patched.iso -r -J -no-emul-boot -boot-load-size 4 -boot-info-table -b isolinux/isolinux.bin -c isolinux/boot.cat ./cdir
+sudo genisoimage -o debian_patched.iso -r -J -no-emul-boot -boot-load-size 4 -boot-info-table -b isolinux/isolinux.bin -c isolinux/boot.cat ./isofiles
 
 sudo isohybrid debian_patched.iso

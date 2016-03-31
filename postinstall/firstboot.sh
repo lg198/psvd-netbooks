@@ -13,9 +13,23 @@ krb5-config krb5-config/default_realm string
 EOF
 
 debconf-set-selections ./krb5.seed
+rm krb5.seed
 
 # Install Kerberos, without it asking annoying questions
 sudo apt-get install krb5-user
 
-# Todo: Integrate configuration files
-pvsd_base="https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/ad/"
+# Integrate configuration files
+pvsd_base="https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/ad"
+
+# Download and install config files
+curl -o /etc/krb5.conf $pvsd_base/krb5.conf
+curl -o /etc/nsswitch.conf $pvsd_base/nsswitch.conf
+curl -o /etc/samba/smb.conf $pvsd_base/samba/smb.conf
+curl -o /etc/pam.d/common-session $pvsd_base/pam.d/common-session
+
+# Restart to load new configs
+sudo service smbd restart
+sudo service nmbd restart
+sudo service winbind restart
+
+# TODO: Generate Kerberos ticket

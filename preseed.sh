@@ -18,6 +18,6 @@ sudo genisoimage -o debian_patched.iso -r -J -no-emul-boot -boot-load-size 4 -bo
 
 sudo isohybrid debian_patched.iso
 
-rm -rf loopdir
-rm -rf workspace
-rm -rf isofiles
+sudo rm -rf loopdir
+sudo rm -rf workspace
+sudo rm -rf isofiles

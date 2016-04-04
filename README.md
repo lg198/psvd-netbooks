@@ -27,3 +27,7 @@ Run `sudo ./preseed.sh`. It will generate a lot of output.
 Run `sudo dd if=debian_patched.iso of=/dev/sd?`, where the `?` creates the USB "name" you found above. Chances are, its not `/dev/sda`. In fact, DO NOT use that. If you do, you'll overwrite your computer's hard drive!
 
 If all goes well, you should have a bootable USB drive!
+
+### Updating
+
+Occasionally, there will be an update to the install scripts. To simply update the image, you do not need to run `./download_image.sh`. Just run `git pull`, re-generate the ISO with `./preseed.sh`, and put it onto the USB stick with `sudo dd ...`.

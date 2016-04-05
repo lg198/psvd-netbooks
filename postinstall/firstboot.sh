@@ -16,7 +16,7 @@ debconf-set-selections ./krb5.seed
 rm krb5.seed
 
 # Install Kerberos, without it asking annoying questions
-sudo apt-get install krb5-user
+sudo apt-get install krb5-user sudo curl winbind libpam-winbind libnss-winbind libpam-krb5 chromium
 
 # Integrate configuration files
 pvsd_base="https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/ad"

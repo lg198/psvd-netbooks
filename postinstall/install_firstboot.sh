@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# see if this works
+echo "Hello!" > /root/works1
+
 # grab our firstboot script
 /usr/bin/curl -o /root/firstboot https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/postinstall/firstboot.sh
 chmod +x /root/firstboot
@@ -24,3 +27,6 @@ EOF
 # install the firstboot service
 chmod +x /etc/init.d/firstboot
 update-rc.d firstboot defaults
+
+# see if this works part 2
+echo "Hi!" > /root/works2

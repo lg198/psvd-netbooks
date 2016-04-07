@@ -30,11 +30,19 @@ curl -o /etc/nsswitch.conf $pvsd_base/nsswitch.conf
 curl -o /etc/samba/smb.conf $pvsd_base/samba/smb.conf
 curl -o /etc/pam.d/common-session $pvsd_base/pam.d/common-session
 
-curl -o /root/passthebutter $pvsd_base/
+curl -o /root/passthebutter $pvsd_base/passthebutter
+chmod +x /root/passthebutter
 
 # Restart to load new configs
 sudo service smbd restart
 sudo service nmbd restart
 sudo service winbind restart
 
+# Make sure we're still front-and-center
+xdotool windowfocus $pvsd_twid
+
 # Generate Kerberos ticket
+/root/passthebutter
+
+# Join Samba
+net ads join -k

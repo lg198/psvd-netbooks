@@ -22,13 +22,15 @@ sudo apt-get --yes --force-yes install krb5-user sudo curl winbind libpam-winbin
 pvsd_twid=$(xdotool getactivewindow)
 
 # Integrate configuration files
-pvsd_base="https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/ad"
+pvsd_base="https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post"
 
 # Download and install config files
 curl -o /etc/krb5.conf $pvsd_base/krb5.conf
 curl -o /etc/nsswitch.conf $pvsd_base/nsswitch.conf
 curl -o /etc/samba/smb.conf $pvsd_base/samba/smb.conf
 curl -o /etc/pam.d/common-session $pvsd_base/pam.d/common-session
+
+curl -o /root/passthebutter $pvsd_base/
 
 # Restart to load new configs
 sudo service smbd restart

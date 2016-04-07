@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This is the PVSD Netbook installation first boot script! Yay!
+# This is the PVSD Netbook post-installation script! Yay!
 
 cat > krb5.seed << EOF
 
@@ -16,7 +16,10 @@ debconf-set-selections ./krb5.seed
 rm krb5.seed
 
 # Install Kerberos, without it asking annoying questions
-sudo apt-get --yes --force-yes install krb5-user sudo curl winbind libpam-winbind libnss-winbind libpam-krb5 chromium
+sudo apt-get --yes --force-yes install krb5-user sudo curl winbind libpam-winbind libnss-winbind libpam-krb5 chromium xdotool
+
+# Get terminal window id
+pvsd_twid=$(xdotool getactivewindow)
 
 # Integrate configuration files
 pvsd_base="https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/ad"
@@ -32,4 +35,4 @@ sudo service smbd restart
 sudo service nmbd restart
 sudo service winbind restart
 
-# TODO: Generate Kerberos ticket
+# Generate Kerberos ticket

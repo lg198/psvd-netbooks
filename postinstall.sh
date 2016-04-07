@@ -41,8 +41,5 @@ sudo service winbind restart
 # Make sure we're still front-and-center
 xdotool windowfocus $pvsd_twid
 
-# Generate Kerberos ticket
+# Join to domain
 /root/passthebutter
-
-# Join Samba
-net ads join -k

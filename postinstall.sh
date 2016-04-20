@@ -2,6 +2,11 @@
 
 # This is the PVSD Netbook post-installation script! Yay!
 
+if [ "$EUID" -ne 0 ]
+  then echo "This script must be run as root. Prepend the command with \"sudo\"."
+  exit
+fi
+
 cat > krb5.seed << EOF
 
 krb5-config krb5-config/add_servers boolean false

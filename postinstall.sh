@@ -53,3 +53,12 @@ sudo net ads join -k
 sudo service winbind restart
 sudo service smbd restart
 sudo service nmbd restart
+
+# TODO:
+#   - Download wallpaper.png and logo.png
+#   - Place them in /lib/plymouth/themes/xubuntu-logo/
+
+#   - Move to /usr/share/themes
+#   - Git clone https://github.com/baurigae/polar-night.git
+#   - Change /etc/lightdm/lightdm-gtk-greeter.conf "theme-name" to "polar-night"
+#   - In same file, add "hide-user-image=true"

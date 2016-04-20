@@ -16,10 +16,7 @@ debconf-set-selections ./krb5.seed
 rm krb5.seed
 
 # Install Kerberos, without it asking annoying questions
-sudo apt-get --yes --force-yes install krb5-user sudo curl winbind libpam-winbind libnss-winbind libpam-krb5 chromium-bsu xdotool
-
-# Get terminal window id
-pvsd_twid=$(xdotool getactivewindow)
+sudo apt-get --yes --force-yes install krb5-user sudo curl winbind libpam-winbind libnss-winbind libpam-krb5 chromium xdotool
 
 # Integrate configuration files
 pvsd_base="https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post"
@@ -38,8 +35,16 @@ sudo service smbd restart
 sudo service nmbd restart
 sudo service winbind restart
 
-# Make sure we're still front-and-center
-xdotool windowfocus $pvsd_twid
+# Create kerberos ticket
+sudo kinit macjoin@PVSD.ORG
 
-# Join to domain
-/root/passthebutter
+# Refresh cache
+sudo net cache flush
+
+# Join network
+sudo net ads join -k
+
+# Restart services
+sudo service winbind restart
+sudo service smbd restart
+sudo service nmbd restart

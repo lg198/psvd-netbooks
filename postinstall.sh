@@ -75,5 +75,5 @@ sudo git clone https://github.com/baurigae/polar-night.git
 
 # Configure polar-night
 cd /etc/lightdm/
-sudo sed -ri 's/(theme-name)=[^\n]+/\1=polar-night/' lightdm-gtk-greeter.conf
+sudo sed -ri 's/^(theme-name)=[^\n]+/\1=polar-night/' lightdm-gtk-greeter.conf
 echo "hide-user-image=true" >> lightdm-gtk-greeter.conf

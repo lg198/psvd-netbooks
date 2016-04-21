@@ -1,12 +1,16 @@
 #!/bin/bash
 
-# This is the PVSD Netbook post-installation script! Yay!
+######################################################
+# This is the PVSD Netbook post-installation script. #
+######################################################
 
+# Check for root
 if [ "$EUID" -ne 0 ]
   then echo "This script must be run as root. Prepend the command with \"sudo\"."
   exit
 fi
 
+# Load empty kerberos defaults to quiet install dialog
 cat > krb5.seed << EOF
 
 krb5-config krb5-config/add_servers boolean false
@@ -54,11 +58,22 @@ sudo service winbind restart
 sudo service smbd restart
 sudo service nmbd restart
 
-# TODO:
-#   - Download wallpaper.png and logo.png
-#   - Place them in /lib/plymouth/themes/xubuntu-logo/
 
-#   - Move to /usr/share/themes
-#   - Git clone https://github.com/baurigae/polar-night.git
-#   - Change /etc/lightdm/lightdm-gtk-greeter.conf "theme-name" to "polar-night"
-#   - In same file, add "hide-user-image=true"
+################
+#  ASTHETICS  #
+################
+
+
+# Install custom logo and wallpaper
+cd /lib/plymouth/themes/xubuntu-logo/
+sudo curl -o wallpaper.png https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post/wallpaper.png
+sudo curl -o logo.png https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post/wallpaper.png
+
+# Install polar-night
+cd /usr/share/themes/
+sudo git clone https://github.com/baurigae/polar-night.git
+
+# Configure polar-night
+cd /etc/lightdm/
+sudo sed -ri 's/(theme-name)=[^\n]+/\1=polar-night/' lightdm-gtk-greeter.conf
+echo "hide-user-image=true" >> lightdm-gtk-greeter.conf

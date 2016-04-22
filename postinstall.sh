@@ -27,7 +27,7 @@ debconf-set-selections ./krb5.seed
 rm krb5.seed
 
 # Install Kerberos, without it asking annoying questions
-sudo apt-get --yes --force-yes install krb5-user sudo curl winbind libpam-winbind libnss-winbind libpam-krb5
+sudo apt-get --yes --force-yes install krb5-user sudo curl winbind libpam-winbind libnss-winbind libpam-krb5 chromium-browser
 
 # Integrate configuration files
 pvsd_base="https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post"
@@ -37,9 +37,6 @@ curl -o /etc/krb5.conf $pvsd_base/krb5.conf
 curl -o /etc/nsswitch.conf $pvsd_base/nsswitch.conf
 curl -o /etc/samba/smb.conf $pvsd_base/samba/smb.conf
 curl -o /etc/pam.d/common-session $pvsd_base/pam.d/common-session
-
-curl -o /root/passthebutter $pvsd_base/passthebutter
-chmod +x /root/passthebutter
 
 # Restart to load new configs
 sudo service smbd restart

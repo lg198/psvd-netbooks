@@ -2,6 +2,8 @@
 
 ######################################################
 # This is the PVSD Netbook post-installation script. #
+# This script can be found at https://git.io/vw4nY.  #
+# To download, use curl -L to follow redirect.       #
 ######################################################
 
 # Check for root
@@ -63,6 +65,7 @@ sudo service nmbd restart
 #  ASTHETICS  #
 ################
 
+sudo apt-get --yes --force-yes install git
 
 # Install custom logo and wallpaper
 cd /lib/plymouth/themes/xubuntu-logo/

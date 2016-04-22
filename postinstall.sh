@@ -67,7 +67,7 @@ sudo service nmbd restart
 # Install custom logo and wallpaper
 cd /lib/plymouth/themes/xubuntu-logo/
 sudo curl -o wallpaper.png https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post/wallpaper.png
-sudo curl -o logo.png https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post/wallpaper.png
+sudo curl -o logo.png https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post/logo.png
 
 # Install polar-night
 cd /usr/share/themes/
@@ -77,3 +77,8 @@ sudo git clone https://github.com/baurigae/polar-night.git
 cd /etc/lightdm/
 sudo sed -ri 's/^(theme-name)=[^\n]+/\1=polar-night/' lightdm-gtk-greeter.conf
 echo "hide-user-image=true" >> lightdm-gtk-greeter.conf
+
+# Configure lightdm greeter
+cd /etc/lightdm/lightdm.conf.d
+echo "greeter-hide-users=true" >> 10-xubuntu.conf
+echo "greeter-show-manual-login=true" >> 10-xubuntu.conf

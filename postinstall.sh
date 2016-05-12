@@ -6,6 +6,8 @@
 # To download, use curl -L to follow redirect.       #
 ######################################################
 
+# ===[ Install packages and configuration files ]===
+
 # Check for root
 if [ "$EUID" -ne 0 ]
   then echo "This script must be run as root. Prepend the command with \"sudo\"."
@@ -56,7 +58,6 @@ sudo net ads join -k
 sudo service winbind restart
 sudo service smbd restart
 sudo service nmbd restart
-
 
 ################
 #  ASTHETICS  #

@@ -6,6 +6,8 @@
 # To download, use curl -L to follow redirect.       #
 ######################################################
 
+pvsd_base="https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post"
+
 # ===[ Install packages and configuration files ]===
 
 # Check for root
@@ -13,6 +15,11 @@ if [ "$EUID" -ne 0 ]
   then echo "This script must be run as root. Prepend the command with \"sudo\"."
   exit
 fi
+
+# Connect to wireless network
+read -p "Enter the PV-Mobile password: " npass
+nmcli dev wifi connect PV-Mobile pasword $npass
+read -p "Press enter when the wireless network is established."
 
 # Load empty kerberos defaults to quiet install dialog
 cat > krb5.seed << EOF
@@ -30,9 +37,6 @@ rm krb5.seed
 
 # Install Kerberos, without it asking annoying questions
 sudo apt-get --yes --force-yes install krb5-user sudo curl winbind libpam-winbind libnss-winbind libpam-krb5 chromium-browser
-
-# Integrate configuration files
-pvsd_base="https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post"
 
 # Download and install config files
 curl -o /etc/krb5.conf $pvsd_base/krb5.conf
@@ -59,11 +63,20 @@ sudo service winbind restart
 sudo service smbd restart
 sudo service nmbd restart
 
-###############
-# PERMISSIONS #
-###############
+##################
+# VARIOUS THINGS #
+##################
 
+# Give ladmin network permissions
 sudo usermod -G netdev -a ladmin
+
+# Prevent access to the terminal
+sudo chmod o-x /usr/bin/xfce4-terminal
+sudo chmod o-x /usr/bin/xterm
+
+# Set up panel
+sudo mkdir --parents /etc/skel/.config/xfce4/xfconf/xfce-perchannel
+sudo curl -o /etc/skel/.config/xfce4/xfconf/xfce-perchannel/xfce4-panel.xml $pvsd_base/xfce4-panel.xml
 
 ###############
 #  ASTHETICS  #
@@ -73,8 +86,13 @@ sudo apt-get --yes --force-yes install git
 
 # Install custom logo and wallpaper
 cd /lib/plymouth/themes/xubuntu-logo/
-sudo curl -o wallpaper.png https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post/wallpaper.png
-sudo curl -o logo.png https://raw.githubusercontent.com/lg198/pvsd-netbooks/master/post/logo.png
+sudo curl -o wallpaper.png $pvsd_base/wallpaper.png
+sudo curl -o logo.png $pvsd_base/logo.png
+
+# Install desktop background
+cd /usr/share/xfce4/backdrops
+sudo curl -o pvsd-desktop.png $pvsd_base/desktop.png
+sudo ln -sf pvsd-desktop.png xubuntu-wallpaper.png
 
 # Install polar-night
 cd /usr/share/themes/

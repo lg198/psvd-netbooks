@@ -59,9 +59,15 @@ sudo service winbind restart
 sudo service smbd restart
 sudo service nmbd restart
 
-################
+###############
+# PERMISSIONS #
+###############
+
+sudo usermod -G netdev -a ladmin
+
+###############
 #  ASTHETICS  #
-################
+###############
 
 sudo apt-get --yes --force-yes install git
 
@@ -83,3 +89,9 @@ echo "hide-user-image=true" >> lightdm-gtk-greeter.conf
 cd /etc/lightdm/lightdm.conf.d
 echo "greeter-hide-users=true" >> 10-xubuntu.conf
 echo "greeter-show-manual-login=true" >> 10-xubuntu.conf
+
+##########
+# REBOOT #
+##########
+
+sudo shutdown -r 0

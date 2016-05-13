@@ -22,10 +22,6 @@ sudo rm /etc/hostname
 echo $hstname > /etc/hostname
 sudo sed -ri "s/ubuntu/$hstname/g" /etc/hosts
 
-# Connect to wireless network
-read -p "Enter the PV-Mobile password: " npass
-nmcli dev wifi connect PV-Mobile pasword $npass
-read -p "Press enter when the wireless network is established."
 
 # Load empty kerberos defaults to quiet install dialog
 cat > krb5.seed << EOF
@@ -72,6 +68,11 @@ sudo service nmbd restart
 ##################
 # VARIOUS THINGS #
 ##################
+
+# Connect to wireless network
+read -p "Enter the PV-Mobile password: " npass
+nmcli dev wifi connect PV-Mobile pasword $npass
+read -p "Press enter when the wireless network is established."
 
 # Give ladmin network permissions
 sudo usermod -G netdev -a ladmin

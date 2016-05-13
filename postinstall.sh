@@ -71,7 +71,7 @@ sudo service nmbd restart
 
 # Connect to wireless network
 read -p "Enter the PV-Mobile password: " npass
-nmcli dev wifi connect PV-Mobile pasword $npass
+nmcli dev wifi connect PV-Mobile password $npass
 read -p "Press enter when the wireless network is established."
 
 # Give ladmin network permissions

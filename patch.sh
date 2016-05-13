@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # Required packages: syslinux-utils
 mkdir loopdir
 sudo mount -o loop xubuntu-*.iso loopdir

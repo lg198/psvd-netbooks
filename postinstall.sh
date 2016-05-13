@@ -16,6 +16,12 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+# Ask for hostname
+read -p "Enter computer hostname: " hstname
+sudo rm /etc/hostname
+echo $hstname > /etc/hostname
+sudo sed -ri "s/ubuntu/$hstname/g" /etc/hosts
+
 # Connect to wireless network
 read -p "Enter the PV-Mobile password: " npass
 nmcli dev wifi connect PV-Mobile pasword $npass
@@ -77,6 +83,7 @@ sudo chmod o-x /usr/bin/xterm
 # Set up panel
 sudo mkdir --parents /etc/skel/.config/xfce4/xfconf/xfce-perchannel
 sudo curl -o /etc/skel/.config/xfce4/xfconf/xfce-perchannel/xfce4-panel.xml $pvsd_base/xfce4-panel.xml
+
 
 ###############
 #  ASTHETICS  #

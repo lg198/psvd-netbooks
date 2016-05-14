@@ -17,10 +17,11 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Ask for hostname
+oldhstname=$(cat /etc/hostname)
 read -p "Enter computer hostname: " hstname
 sudo rm /etc/hostname
 echo "$hstname" > /etc/hostname
-sudo sed -ri "s/ubuntu/$hstname/g" /etc/hosts
+sudo sed -ri "s/$oldhstname/$hstname/g" /etc/hosts
 
 
 # Load empty kerberos defaults to quiet install dialog

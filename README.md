@@ -39,7 +39,7 @@ Run `sudo pv xubuntu_patched | sudo dd of=/dev/? bs=120M`, replacing `?` with th
 
 If all goes well, you should have a bootable USB drive!
 
-### To the netbooks
+## To the netbooks
 
 First, make sure that the netbook is charging and is connected to the internet via an ethernet cable. Next, turn it on and start spamming `F12` until the boot menu appears. From there, enable USB boot in the BIOS. _Make sure hard drive boot is above the USB boot in the boot order!_ Then restart, spam `F12`, select the USB boot option.
 

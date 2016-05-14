@@ -13,7 +13,7 @@ sudo apt-get install git curl rsync genisoimage pv syslinux syslinux-utils
 
 ## Clone the git repository
 
-The install scripts are stored in a git repository. Run `git clone https://github.com/lg198/pvsd-netbooks.git` to clone it into a folder named `pvsd-netbooks`.
+The install scripts are stored in a git repository. Run `git clone https://github.com/lg198/pvsd-netbooks.git` to clone the repository into a folder named `pvsd-netbooks`.
 
 ## Create the USB
 
@@ -35,7 +35,7 @@ Inside the `pvsd-netbooks` directory, run `./download_image.sh`. It might take a
 
 Run `sudo ./patch.sh`. It will generate a lot of output.
 
-Run `sudo pv xubuntu_patched | sudo dd of=/dev/? bs=120M`, replacing `?` with the USB name (found above). **WARNING: Don't use /dev/sda... you'll overwrite your hard drive!**
+Run `sudo pv xubuntu_patched.iso | sudo dd of=/dev/? bs=120M`, replacing `?` with the USB name (found above). **WARNING: Don't use /dev/sda... you'll overwrite your hard drive!**
 
 If all goes well, you should have a bootable USB drive!
 

@@ -4,6 +4,8 @@ This outlines the process of installing the PVSD Netbook image onto a single net
 
 ## Prereqs
 
+The images **must** be generated on a Linux computer. Sorry about that.
+
 You'll need to have `git` installed on your system, as well as `curl, rsync, genisoimage, pv`. You must also install the `syslinux` and `syslinux-utils` packages. Install those by executing the following command:
 ```
 sudo apt-get install git curl rsync genisoimage pv syslinux syslinux-utils

@@ -45,7 +45,7 @@ First, make sure that the netbook is charging and is connected to the internet v
 
 Xubuntu will install. When it is finished, a dialog will appear. Press okay (it might freeze up, but that's okay), and it will restart. Then it will instruct you to remove the USB stick and press enter. Follow its orders, or else!
 
-When the login screen appears, enter `ladmin`'s password (currently `fluffycats`). Once you log into the account, press <Windows Key - T> to open a terminal. Enter the following commands (you will be prompted to enter the `ladmin` password again):
+When the login screen appears, enter `ladmin`'s password (currently `fluffycats`). Once you log into the account, press the "windows" key and 'T' at the same time to open a terminal. Enter the following commands (you will be prompted to enter the `ladmin` password again):
 ```
 sudo apt-get install curl
 sudo curl -L -o postinstall.sh https://git.io/vw4nY

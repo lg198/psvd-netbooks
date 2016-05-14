@@ -19,7 +19,7 @@ fi
 # Ask for hostname
 read -p "Enter computer hostname: " hstname
 sudo rm /etc/hostname
-echo $hstname > /etc/hostname
+echo "$hstname" > /etc/hostname
 sudo sed -ri "s/ubuntu/$hstname/g" /etc/hosts
 
 

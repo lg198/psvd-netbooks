@@ -19,10 +19,9 @@ fi
 # Ask for hostname
 oldhstname=$(cat /etc/hostname)
 read -p "Enter computer hostname: " hstname
-sudo rm /etc/hostname
-echo "$hstname" > /etc/hostname
+echo "$hstname" > /tmp/hostname
+sudo cp /tmp/hostname /etc/hostname
 sudo sed -ri "s/$oldhstname/$hstname/g" /etc/hosts
-
 
 # Load empty kerberos defaults to quiet install dialog
 cat > krb5.seed << EOF

@@ -78,8 +78,8 @@ read -p "Press enter when the wireless network is established."
 sudo usermod -G netdev -a ladmin
 
 # Prevent access to the terminal
-sudo chmod o-x /usr/bin/xfce4-terminal
-sudo chmod o-x /usr/bin/xterm
+#sudo chmod o-x /usr/bin/xfce4-terminal
+#sudo chmod o-x /usr/bin/xterm
 
 # Set up panel
 sudo mkdir --parents /etc/skel/.config/xfce4/xfconf/xfce-perchannel
